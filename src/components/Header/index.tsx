@@ -77,8 +77,13 @@ export function Header() {
             >
               <AiOutlineCloseCircle size={25} />
             </button>
-            <form onSubmit={(e) => handleSearch(e)} className={`searchForm`}>
+            <form
+              autoComplete="off"
+              onSubmit={(e) => handleSearch(e)}
+              className={`searchForm`}
+            >
               <input
+                autoComplete="off"
                 onChange={(e) => {
                   setSearch(e.target.value);
                   setResponseStatus("");

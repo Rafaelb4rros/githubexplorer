@@ -1,6 +1,7 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GetDataContext } from "../../contexts/GetData";
 import { responseData } from "../../utils/commonTypes";
+import { ToggleMenu } from "../Header/toggleMenu";
 import { RepoListItem } from "./RepoListItem";
 import { Loader } from "./RepoListLoader";
 
@@ -17,29 +18,18 @@ export function RepoList() {
     search,
   } = useContext(GetDataContext);
 
-  const handleExpandItem = (itemId: number) => {
-    const [newItem] = responseData.map((item) =>
-      item.data.id === itemId
-        ? {
-            ...item,
-            isExpanded: !item.isExpanded,
-          }
-        : item
-    );
-
-    const newState = responseData.filter((item) => item.data.id !== itemId);
-
-    setResponseData([...newState, newItem]);
+  const handleExpandItem = (i: number) => {
+    const newState = [...responseData];
+    newState[i].isExpanded = !newState[i].isExpanded;
+    setResponseData(newState);
   };
 
   if (rateLimitExceeded) {
     return (
       <div className="repoListContainer">
         <div className="repoListHeader">
-          <p>
-            Voce atingiu a o limite de requisicoes da api do github, tente
-            novamente as {resetTime?.getHours()}:{resetTime?.getMinutes()}
-          </p>
+          Voce atingiu a o limite de requisicoes da api do github, tente
+          novamente as {resetTime?.getHours()}:{resetTime?.getMinutes()}
         </div>
       </div>
     );
@@ -47,8 +37,10 @@ export function RepoList() {
 
   return (
     <div className="repoListContainer">
+      You are looking for
+      <ToggleMenu />
       <div className="repoListHeader">
-        {responseStatus === "error" && (
+        {responseStatus === "error" && search.trim() !== "" && (
           <p>
             <span className="danger" color="#fff">
               404
@@ -62,6 +54,7 @@ export function RepoList() {
           <RepoListItem
             handleExpandItem={handleExpandItem}
             RepoListItemData={response}
+            id={i}
             key={i}
           />
         ))}

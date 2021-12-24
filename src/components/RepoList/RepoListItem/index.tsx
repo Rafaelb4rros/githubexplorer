@@ -3,15 +3,18 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { BiLinkExternal } from "react-icons/bi";
 import { RiGitRepositoryCommitsLine, RiUserFollowLine } from "react-icons/ri";
 import "./styles.scss";
+import { useEffect, useState } from "react";
 
 type RepoListItemProps = {
   RepoListItemData: responseData;
-  handleExpandItem: (value: number) => void;
+  id: number;
+  handleExpandItem: (i: number) => void;
 };
 
 export function RepoListItem({
   RepoListItemData,
   handleExpandItem,
+  id,
 }: RepoListItemProps) {
   return (
     <div
@@ -31,7 +34,8 @@ export function RepoListItem({
             <a target="_blank" href={RepoListItemData.data.html_url}>
               <BiLinkExternal size={25} />
             </a>
-            <span className={`tag Repository`}>{"Repository"}</span>
+            <span className={`tag Repository`}>Repository</span>
+            <span className="owner"> {RepoListItemData.data.owner.login}</span>
           </div>
 
           {RepoListItemData.data.description && (
@@ -64,8 +68,12 @@ export function RepoListItem({
             </span>
           </div>
 
-          {RepoListItemData.data.bio && (
+          {RepoListItemData.data.bio ? (
             <div className="bioContainer">{RepoListItemData.data.bio}</div>
+          ) : (
+            <div className="bioContainer">
+              {RepoListItemData.data.description}
+            </div>
           )}
 
           <div className="dataInfoContainer">
@@ -86,7 +94,7 @@ export function RepoListItem({
         </>
       )}
       <div className="expand">
-        <button onClick={() => handleExpandItem(RepoListItemData.data.id)}>
+        <button onClick={() => handleExpandItem(id)}>
           <AiOutlineArrowRight />
         </button>
       </div>

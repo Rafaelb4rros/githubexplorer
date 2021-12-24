@@ -1,11 +1,10 @@
-
+/dist
 /node_modules
 /.pnp
 .pnp.js
 
 /coverage
 
-/dist
 /build
 
 .DS_Store

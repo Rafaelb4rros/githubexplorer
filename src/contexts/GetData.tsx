@@ -10,6 +10,7 @@ import {
 import { useMobileMenuContext } from "../hooks/useMobileMenuContext";
 import { api } from "../services/githubapi";
 import { responseData } from "../utils/commonTypes";
+import { idGenerator } from "../utils/idGenerator";
 
 type GetDataContextProvider = {
   children: ReactNode;
@@ -56,8 +57,6 @@ export function GetDataContextProvider({ children }: GetDataContextProvider) {
       setResetTime(new Date(core.reset * 1000));
       setRateLimitInfo(core);
     });
-
-    return () => {};
   }, [responseData]);
 
   async function getData() {
@@ -67,7 +66,14 @@ export function GetDataContextProvider({ children }: GetDataContextProvider) {
       if (response.status === 200) {
         setSearch("");
       }
-      setResponseData([...responseData, { ...response, isExpanded: false }]);
+      setResponseData([
+        ...responseData,
+        {
+          ...response,
+          isExpanded: false,
+          id: idGenerator([response.id || idGenerator([])]),
+        },
+      ]);
     } catch (err) {
       console.log("error: " + err);
       setResponseStatus("error");
