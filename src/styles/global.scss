@@ -1,0 +1,41 @@
+@import "./_variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  background: $dark-background;
+}
+
+button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: filter 0.2s;
+  background: transparent;
+  border: none;
+
+  svg {
+    fill: #fff;
+  }
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
+:disabled {
+  cursor: not-allowed;
+  color: $w-disabled-text !important;
+}
+
+.danger {
+  background: $danger !important;
+}
