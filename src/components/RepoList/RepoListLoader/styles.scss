@@ -1,0 +1,21 @@
+@import "../../../styles/variables";
+
+.RepoListItemLoad {
+  max-width: 94%;
+  margin: 0 auto;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  min-height: 8rem;
+  background: linear-gradient(to left, $purple400, $purple300);
+  animation: RepoListItemLoading 2s 5s infinite;
+  opacity: 0.5;
+}
+
+@keyframes RepoListItemLoading {
+  from {
+    background: linear-gradient(to left, $purple400, $purple300);
+  }
+  to {
+    background: linear-gradient(to right, $purple400, $purple300);
+  }
+}

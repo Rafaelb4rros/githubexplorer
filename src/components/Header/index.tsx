@@ -4,16 +4,28 @@ import {
   AiOutlineSearch,
   AiOutlineCloseCircle,
 } from "react-icons/ai";
+import { CgSearchLoading } from "react-icons/cg";
 
 import "./styles.scss";
 
-import { useRef, useEffect, useState, FormEvent } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
+import { GetDataContext } from "../../contexts/GetData";
 
 export function Header() {
   const [isSearchBarEnabled, setIsSearchBarEnabled] = useState(false);
   const [onInputFocus, setOnInputFocus] = useState(false);
-  const [search, setSearch] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const {
+    handleSearch,
+    search,
+    setSearch,
+    rateLimitInfo,
+    isLoading,
+    setResponseStatus,
+    responseStatus,
+    resetTime,
+    rateLimitExceeded,
+  } = useContext(GetDataContext);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -24,17 +36,10 @@ export function Header() {
     }
   }, [search]);
 
-  const handleSubmit = (e: FormEvent) => {
-    if (search.trim() === "") return;
-    e.preventDefault();
-
-    console.log(search);
-  };
-
   return (
     <header className="header">
-      <div className="githubIcon">
-        <AiOutlineGithub size={100} />
+      <div className={`githubIcon ${isLoading ? "load" : ""}`}>
+        <AiOutlineGithub size={130} />
       </div>
 
       <div className="headerContent">
@@ -51,6 +56,8 @@ export function Header() {
               </button>
             </div>
             <MobileMenu
+              resetTime={resetTime}
+              rateLimitInfo={rateLimitInfo}
               isMobileMenuOpen={isMobileMenuOpen}
               setIsMobileMenuOpen={setIsMobileMenuOpen}
             />
@@ -59,7 +66,9 @@ export function Header() {
           <div
             className={`SearchWrapper
             ${onInputFocus ? "outline" : ""}
-            ${isSearchBarEnabled ? "enabled" : ""}`}
+            ${isSearchBarEnabled ? "enabled" : ""}
+            ${responseStatus === "error" ? "error" : ""}
+            `}
           >
             <button
               className="danger"
@@ -68,13 +77,17 @@ export function Header() {
             >
               <AiOutlineCloseCircle size={25} />
             </button>
-            <form onSubmit={(e) => handleSubmit(e)} className={`searchForm`}>
+            <form onSubmit={(e) => handleSearch(e)} className={`searchForm`}>
               <input
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setResponseStatus("");
+                }}
                 ref={inputRef}
                 value={search}
                 type="text"
-                placeholder="Repos or users"
+                name="search"
+                placeholder="Repos, orgs or users..."
               />
               {search.trim() !== "" && (
                 <button
@@ -92,11 +105,15 @@ export function Header() {
               )}
 
               <button
-                disabled={search.trim() === ""}
+                disabled={search.trim() === "" || rateLimitExceeded}
                 type="submit"
                 title="Search"
               >
-                <AiOutlineSearch size={25} />
+                {isLoading ? (
+                  <CgSearchLoading fill="#ffff" color="#ffff" size={24} />
+                ) : (
+                  <AiOutlineSearch size={25} />
+                )}
               </button>
             </form>
           </div>

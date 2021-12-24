@@ -1,17 +1,35 @@
 @import "../../styles/_variables.scss";
 
 .header {
+  width: 100%;
   background: $dark-gray;
   color: $w-main-text;
   display: flex;
   gap: 1rem;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   padding: 1rem;
-  min-height: 20vh;
+  min-height: 30vh;
+
   .githubIcon {
-    z-index: 1;
+    svg {
+      &:hover,
+      &.load {
+        animation: loading 1s 0s 1;
+      }
+    }
   }
+
+  @keyframes loading {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   .headerContent {
     max-width: 1400px;
     margin: 0 auto;
@@ -20,12 +38,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    gap: 1.3rem;
 
     .title {
       display: flex;
       h2 {
-        font-size: 22px;
+        font-size: 20px;
       }
     }
 
@@ -37,7 +55,9 @@
         border: solid 1px $purple800;
         background: $dark-background;
       }
-
+      &.error {
+        border: solid 1px $danger;
+      }
       display: flex;
       justify-content: space-between;
       align-items: center;

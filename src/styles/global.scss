@@ -11,6 +11,8 @@
 body {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   background: $dark-background;
+  max-width: 100vw;
+  min-height: 100vh;
 }
 
 button {

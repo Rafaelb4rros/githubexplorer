@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+
+.repoListContainer {
+  .repoListHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    border-bottom: solid 1px $dark-purple;
+    border-radius: 0 0 10px 10px;
+    font-weight: 600;
+    p {
+      color: $w-disabled-text;
+      font-size: 20px;
+      span {
+        color: $w-secondary-text;
+      }
+    }
+  }
+}

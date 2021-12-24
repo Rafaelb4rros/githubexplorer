@@ -12,10 +12,13 @@ module.exports = {
     filename: "bundle.js",
   },
   resolve: {
-    extensions: [".js", ".jsx", ".tsx", "ts"],
+    extensions: [".js", ".jsx", ".tsx", ".ts"],
   },
   devServer: {
+    compress: true,
+    allowedHosts: "all",
     static: path.resolve(__dirname, "public"),
+    port: 3000,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -30,7 +33,7 @@ module.exports = {
         use: "babel-loader",
       },
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: "ts-loader",
       },
