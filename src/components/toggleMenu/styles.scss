@@ -1,0 +1,61 @@
+@import "../../styles/variables";
+
+.SearchFilters {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  padding-bottom: 0.5rem;
+  border-bottom: solid 1px $w-disabled-text;
+  justify-content: center;
+
+  span {
+    font-weight: 500;
+    color: $w-main-text;
+  }
+
+  div {
+    cursor: pointer;
+    position: relative;
+    width: 50px;
+    max-height: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 5px;
+    background: $dark-gray;
+    transition: all 0.2s;
+
+    label {
+      cursor: pointer;
+      transition: all 0.2s;
+      display: block;
+      opacity: 0.5;
+      width: 50%;
+      height: 100%;
+      color: #fff;
+      border-radius: 50%;
+      transform: translateX(0%);
+
+      svg {
+        height: 100%;
+        width: 100%;
+      }
+    }
+    &.active {
+      background: $purple300;
+
+      label {
+        transform: translateX(100%);
+        opacity: 1;
+      }
+    }
+    input {
+      position: absolute;
+      right: 0;
+      display: none;
+      margin: 0 0.4rem;
+    }
+  }
+}

@@ -1,15 +1,15 @@
 import { Header } from "./components/Header";
 import { RepoList } from "./components/RepoList";
-import { GetDataContextProvider } from "./contexts/GetData";
-import { MobileMenuContextProvider } from "./contexts/MobileMenuContext";
+import { DataContextProvider } from "./contexts/DataContext";
+import { ToggleMenuContextProvider } from "./contexts/ToggleMenuContext";
 
 export function App() {
   return (
-    <MobileMenuContextProvider>
-      <GetDataContextProvider>
+    <ToggleMenuContextProvider>
+      <DataContextProvider>
         <Header />
         <RepoList />
-      </GetDataContextProvider>
-    </MobileMenuContextProvider>
+      </DataContextProvider>
+    </ToggleMenuContextProvider>
   );
 }

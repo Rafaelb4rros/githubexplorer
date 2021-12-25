@@ -16,9 +16,9 @@ type MobileMenuContext = {
   activeCheckbox: string;
 };
 
-export const MobileMenuContext = createContext({} as MobileMenuContext);
+export const ToggleMenuContext = createContext({} as MobileMenuContext);
 
-export function MobileMenuContextProvider({
+export function ToggleMenuContextProvider({
   children,
 }: MobileMenuContextProviderProps) {
   const [checkboxStates, setCheckboxStates] = useState<checkboxStates>({
@@ -41,7 +41,7 @@ export function MobileMenuContextProvider({
   }
 
   return (
-    <MobileMenuContext.Provider
+    <ToggleMenuContext.Provider
       value={{
         checkboxStates,
         activeCheckbox,
@@ -49,6 +49,6 @@ export function MobileMenuContextProvider({
       }}
     >
       {children}
-    </MobileMenuContext.Provider>
+    </ToggleMenuContext.Provider>
   );
 }

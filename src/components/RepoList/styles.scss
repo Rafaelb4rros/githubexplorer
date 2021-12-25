@@ -1,21 +1,143 @@
 @import "../../styles/variables";
 
 .repoListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .repoList {
+    border-top: 1px solid $w-disabled-text;
+    width: 100%;
+  }
+
+  &.emptyList {
+    background: rgba(30, 21, 39, 0.3);
+    position: relative;
+    height: 45vh;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    font-size: 20px;
+    margin: 0 auto;
+    border-bottom: solid 2px $purple300;
+
+    svg {
+      position: absolute;
+      opacity: 0.1;
+      animation: githubicon2 10s infinite;
+
+      @keyframes githubicon2 {
+        from {
+          color: $purple300;
+          transform: rotateY(0deg);
+        }
+        to {
+          color: $purple800;
+          transform: rotateY(360deg);
+        }
+      }
+    }
+
+    .repoListHeader {
+      z-index: 1;
+      display: flex;
+
+      p {
+        text-align: center;
+        font-size: 18px;
+        color: $w-main-text;
+      }
+    }
+  }
+  &.error {
+    position: relative;
+    height: calc(100vh - 50vh);
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    font-size: 20px;
+    margin: 0 auto;
+    border-bottom: solid 2px $danger;
+
+    svg {
+      position: absolute;
+      opacity: 0.1;
+      animation: githubicon 10s infinite;
+      @keyframes githubicon {
+        from {
+          color: $danger;
+          transform: rotateY(0deg);
+        }
+        to {
+          color: $purple800;
+          transform: rotateY(360deg);
+        }
+      }
+    }
+
+    .repoListHeader {
+      z-index: 1;
+
+      p {
+        text-align: center;
+        font-size: 18px;
+        color: $danger;
+      }
+      span {
+        color: $w-main-text;
+        font-size: 20px;
+      }
+    }
+  }
+
   .repoListHeader {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 5rem;
-    border-bottom: solid 1px $dark-purple;
+    height: 2rem;
     border-radius: 0 0 10px 10px;
     font-weight: 600;
+
     p {
       color: $w-disabled-text;
-      font-size: 20px;
+      font-size: 17px;
       span {
         color: $w-secondary-text;
       }
+    }
+  }
+
+  .rateLimit {
+    svg {
+      margin-right: 0.5rem;
+      color: $purple300;
+    }
+    z-index: 1;
+    display: flex;
+    margin: 0 0.9rem;
+    color: $purple300;
+
+    span {
+      color: $w-main-text;
+      font-size: 17px;
+    }
+  }
+  .requestsInfo {
+    svg {
+      color: $purple300;
+      margin-right: 0.5rem;
+    }
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0.5rem 0.9rem;
+    color: $purple300;
+
+    span {
+      margin: 0 0.5rem;
+      font-size: 15px;
+      color: $w-main-text;
     }
   }
 }

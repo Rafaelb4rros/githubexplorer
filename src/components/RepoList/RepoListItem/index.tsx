@@ -3,18 +3,19 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { BiLinkExternal } from "react-icons/bi";
 import { RiGitRepositoryCommitsLine, RiUserFollowLine } from "react-icons/ri";
 import "./styles.scss";
-import { useEffect, useState } from "react";
+import { FiTrash } from "react-icons/fi";
 
 type RepoListItemProps = {
   RepoListItemData: responseData;
   id: number;
-  handleExpandItem: (i: number) => void;
+  handleExpandItem: (itemId: number) => void;
+  handleDeleteItem: (itemId: number) => void;
 };
 
 export function RepoListItem({
   RepoListItemData,
   handleExpandItem,
-  id,
+  handleDeleteItem,
 }: RepoListItemProps) {
   return (
     <div
@@ -93,8 +94,13 @@ export function RepoListItem({
           </div>
         </>
       )}
+      <div className="deleteItem">
+        <button onClick={() => handleDeleteItem(RepoListItemData.data.id)}>
+          <FiTrash />
+        </button>
+      </div>
       <div className="expand">
-        <button onClick={() => handleExpandItem(id)}>
+        <button onClick={() => handleExpandItem(RepoListItemData.data.id)}>
           <AiOutlineArrowRight />
         </button>
       </div>

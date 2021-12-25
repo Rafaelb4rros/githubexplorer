@@ -1,4 +1,3 @@
-import { MobileMenu } from "./MobileMenu";
 import {
   AiOutlineGithub,
   AiOutlineSearch,
@@ -8,24 +7,22 @@ import { CgSearchLoading } from "react-icons/cg";
 
 import "./styles.scss";
 
-import { useRef, useEffect, useState, useContext } from "react";
-import { GetDataContext } from "../../contexts/GetData";
+import { useRef, useEffect, useState } from "react";
+import { useData } from "../../hooks/useData";
 
 export function Header() {
   const [isSearchBarEnabled, setIsSearchBarEnabled] = useState(false);
   const [onInputFocus, setOnInputFocus] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const {
     handleSearch,
     search,
     setSearch,
-    rateLimitInfo,
     isLoading,
     setResponseStatus,
     responseStatus,
-    resetTime,
     rateLimitExceeded,
-  } = useContext(GetDataContext);
+  } = useData();
+
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -50,24 +47,19 @@ export function Header() {
             </div>
             <div className="SearchWrapper">
               <button
+                disabled={rateLimitExceeded}
                 onClick={() => setIsSearchBarEnabled(!isSearchBarEnabled)}
               >
                 <AiOutlineSearch size={25} />
               </button>
             </div>
-            <MobileMenu
-              resetTime={resetTime}
-              rateLimitInfo={rateLimitInfo}
-              isMobileMenuOpen={isMobileMenuOpen}
-              setIsMobileMenuOpen={setIsMobileMenuOpen}
-            />
           </>
         ) : (
           <div
             className={`SearchWrapper
             ${onInputFocus ? "outline" : ""}
             ${isSearchBarEnabled ? "enabled" : ""}
-            ${responseStatus === "error" ? "error" : ""}
+            ${responseStatus?.status === "error" ? "error" : ""}
             `}
           >
             <button
@@ -83,10 +75,14 @@ export function Header() {
               className={`searchForm`}
             >
               <input
+                disabled={rateLimitExceeded}
                 autoComplete="off"
                 onChange={(e) => {
                   setSearch(e.target.value);
-                  setResponseStatus("");
+                  setResponseStatus({
+                    status: "",
+                    in: "",
+                  });
                 }}
                 ref={inputRef}
                 value={search}
