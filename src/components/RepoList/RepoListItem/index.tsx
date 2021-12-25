@@ -1,5 +1,11 @@
 import { responseData } from "../../../utils/commonTypes";
-import { AiOutlineArrowRight } from "react-icons/ai";
+import {
+  AiOutlineArrowRight,
+  AiOutlineFork,
+  AiOutlineHeart,
+  AiOutlineStar,
+} from "react-icons/ai";
+import { GiStrikingArrows } from "react-icons/gi";
 import { BiLinkExternal } from "react-icons/bi";
 import { RiGitRepositoryCommitsLine, RiUserFollowLine } from "react-icons/ri";
 import "./styles.scss";
@@ -36,7 +42,6 @@ export function RepoListItem({
               <BiLinkExternal size={25} />
             </a>
             <span className={`tag Repository`}>Repository</span>
-            <span className="owner"> {RepoListItemData.data.owner.login}</span>
           </div>
 
           {RepoListItemData.data.description && (
@@ -46,9 +51,19 @@ export function RepoListItem({
           )}
 
           <div className="dataInfoContainer">
-            <div className="followers">
-              <RiUserFollowLine />
+            <div className="forks">
+              <AiOutlineFork />
               {RepoListItemData.data.forks}
+            </div>
+
+            <div className="subs">
+              <AiOutlineHeart />
+              {RepoListItemData.data.subscribers_count}
+            </div>
+
+            <div className="stars">
+              <AiOutlineStar />
+              {RepoListItemData.data.stargazers_count}
             </div>
           </div>
         </>
@@ -78,19 +93,35 @@ export function RepoListItem({
           )}
 
           <div className="dataInfoContainer">
-            <div className="reposInfo">
-              <RiGitRepositoryCommitsLine />
-              {RepoListItemData.data.public_repos}
-            </div>
+            {RepoListItemData.data.type === "Organization" ? (
+              <>
+                <div className="fullReposInfo">
+                  <RiGitRepositoryCommitsLine />
+                  {RepoListItemData.data.public_repos}
+                </div>
 
-            <div className="followers">
-              <RiUserFollowLine />
-              {RepoListItemData.data.followers}
-            </div>
-            <div className="following">
-              <RiUserFollowLine />
-              {RepoListItemData.data.following}
-            </div>
+                <div className="gists">
+                  <GiStrikingArrows />
+                  {RepoListItemData.data.public_gists}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="reposInfo">
+                  <RiGitRepositoryCommitsLine />
+                  {RepoListItemData.data.public_repos}
+                </div>
+
+                <div className="followers">
+                  <RiUserFollowLine />
+                  {RepoListItemData.data.followers}
+                </div>
+                <div className="following">
+                  <RiUserFollowLine />
+                  {RepoListItemData.data.following}
+                </div>
+              </>
+            )}
           </div>
         </>
       )}

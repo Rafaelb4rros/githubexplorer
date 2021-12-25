@@ -8,11 +8,14 @@ type responseData = {
     type: string | null;
     bio: string;
     name: string;
+    public_gists: number;
     url: string;
     repos_url: string;
     html_url: string;
     followers: number;
     following: number;
+    stargazers_count: number;
+    subscribers_count: number;
     following_url: string;
     created_at: string;
     public_repos: string;

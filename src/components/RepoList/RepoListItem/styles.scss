@@ -74,10 +74,6 @@
       }
     }
 
-    .owner {
-      color: $purple800;
-      font-weight: 600;
-    }
     svg {
       color: #ffff;
     }
@@ -96,9 +92,10 @@
 
   .dataInfoContainer {
     display: flex;
+    width: 100%;
     justify-content: center;
     color: $w-secondary-text;
-    gap: 0.2rem;
+    gap: 1rem;
     svg {
       color: $w-main-text;
     }
@@ -146,9 +143,34 @@
       svg {
         margin-right: 0.2rem;
       }
+      .forks {
+        &:after {
+          content: " Forks";
+        }
+      }
+      .subs {
+        &:after {
+          content: " Subscribers";
+        }
+      }
+      .stars {
+        &:after {
+          content: " Stars";
+        }
+      }
       .reposInfo {
         &:after {
           content: " Repos";
+        }
+      }
+      .fullReposInfo {
+        &:after {
+          content: " Repositories";
+        }
+      }
+      .gists {
+        &:after {
+          content: " Gists";
         }
       }
       .followers {
