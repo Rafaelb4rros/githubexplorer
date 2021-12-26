@@ -100,7 +100,8 @@ export function RepoList() {
       </div>
 
       {responseData.length > 0 ? (
-        <ul className="repoList">
+        <ul className="repoList emptyList">
+          <AiOutlineGithub size={300} />
           {responseData.map((response: responseData, i: number) => (
             <RepoListItem
               handleDeleteItem={handleDeleteItem}
@@ -114,7 +115,7 @@ export function RepoList() {
           {isLoading && <Loader />}
         </ul>
       ) : (
-        <div className="repoListContainer emptyList">
+        <div className="repoList emptyList">
           <AiOutlineGithub size={300} />
           <div className="repoListHeader ">
             <p>

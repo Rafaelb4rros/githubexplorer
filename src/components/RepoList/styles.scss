@@ -3,36 +3,41 @@
 .repoListContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  .repoList {
-    border-top: 1px solid $w-disabled-text;
-    width: 100%;
-  }
+  justify-content: flex-start;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
 
-  &.emptyList {
-    background: rgba(30, 21, 39, 0.3);
-    position: relative;
-    height: 45vh;
+  .repoList {
+    min-width: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
-    font-size: 20px;
-    margin: 0 auto;
+    height: 50vh;
+    position: relative;
+    background: rgba(30, 21, 39, 0.3);
+    -ms-overflow-style: none;
+    flex-wrap: wrap;
+    gap: 1rem;
+    scrollbar-width: none;
+    overflow-y: scroll;
     border-bottom: solid 2px $purple300;
 
-    svg {
-      position: absolute;
-      opacity: 0.1;
-      animation: githubicon2 10s infinite;
+    &.emptyList {
+      > svg {
+        position: absolute;
+        opacity: 0.1;
+        animation: githubicon2 10s infinite;
 
-      @keyframes githubicon2 {
-        from {
-          color: $purple300;
-          transform: rotateY(0deg);
-        }
-        to {
-          color: $purple800;
-          transform: rotateY(360deg);
+        @keyframes githubicon2 {
+          from {
+            color: $purple300;
+            transform: rotateY(0deg);
+          }
+          to {
+            color: $purple800;
+            transform: rotateY(360deg);
+          }
         }
       }
     }
@@ -130,7 +135,7 @@
     z-index: 1;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+
     margin: 0.5rem 0.9rem;
     color: $purple300;
 

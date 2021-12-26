@@ -3,9 +3,9 @@
 .RepoListItem {
   transition: all 0.1s;
   position: relative;
-  width: 95%;
+  width: 100%;
+  opacity: 0.8;
   margin: 0 auto;
-  margin-top: 0.5rem;
   height: 9rem;
   padding: 0.3rem;
   border-radius: 5px;
@@ -53,8 +53,12 @@
     a {
       max-width: 20px;
     }
+    overflow-x: hidden;
     .username {
       color: #fff;
+      font-size: 20px;
+      line-height: 1.5rem;
+      font-weight: 600;
     }
     .tag {
       color: #fff;
@@ -63,8 +67,9 @@
       border-radius: 5px;
       padding: 0.1rem;
       text-align: center;
+
       &.Repository {
-        background: $danger;
+        background: $dark-background;
       }
       &.User {
         background: $purple800;

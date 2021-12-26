@@ -13,6 +13,8 @@ body {
   background: $dark-background;
   max-width: 100vw;
   min-height: 100vh;
+
+  overflow: hidden;
 }
 
 button {

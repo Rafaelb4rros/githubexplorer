@@ -11,7 +11,9 @@ import { useRef, useEffect, useState } from "react";
 import { useData } from "../../hooks/useData";
 
 export function Header() {
-  const [isSearchBarEnabled, setIsSearchBarEnabled] = useState(false);
+  const [isSearchBarEnabled, setIsSearchBarEnabled] = useState(
+    document.body.offsetWidth >= 600 ? true : false
+  );
   const [onInputFocus, setOnInputFocus] = useState(false);
   const {
     handleSearch,
@@ -32,6 +34,8 @@ export function Header() {
       setOnInputFocus(true);
     }
   }, [search]);
+
+  useEffect(() => {}, []);
 
   return (
     <header className="header">
@@ -59,16 +63,23 @@ export function Header() {
             className={`SearchWrapper
             ${onInputFocus ? "outline" : ""}
             ${isSearchBarEnabled ? "enabled" : ""}
-            ${responseStatus?.status === "error" ? "error" : ""}
+            ${
+              responseStatus?.status === "error" && search.trim() !== ""
+                ? "error"
+                : ""
+            }
             `}
           >
-            <button
-              className="danger"
-              title="Close input"
-              onClick={() => setIsSearchBarEnabled(!isSearchBarEnabled)}
-            >
-              <AiOutlineCloseCircle size={25} />
-            </button>
+            {document.body.offsetWidth < 600 && (
+              <button
+                className="danger"
+                title="Close input"
+                onClick={() => setIsSearchBarEnabled(!isSearchBarEnabled)}
+              >
+                <AiOutlineCloseCircle size={25} />
+              </button>
+            )}
+
             <form
               autoComplete="off"
               onSubmit={(e) => handleSearch(e)}
@@ -95,7 +106,7 @@ export function Header() {
                   disabled={search.trim() === ""}
                   type="button"
                   className="clearvalue"
-                  title="clear input value"
+                  title="Clear input value"
                   onClick={() => {
                     inputRef.current?.focus();
                     setSearch("");
