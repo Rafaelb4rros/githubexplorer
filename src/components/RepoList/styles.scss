@@ -22,7 +22,9 @@
     scrollbar-width: none;
     overflow-y: scroll;
     border-bottom: solid 2px $purple300;
-
+    &::-webkit-scrollbar {
+      display: none;
+    }
     &.emptyList {
       > svg {
         position: absolute;
