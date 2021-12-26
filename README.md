@@ -1,6 +1,6 @@
 <div align="left">
   <h1 align="center">Github explorer</h1>
-    <img src="./public/images/githubexplorer.gif" alt="Logo" width="950" height="470">
+    <img src="./public/images/githubexplorer.gif" alt="Logo" width="970" height="470">
 </div>
 <br>
 Github explorer is project that uses the github API to display info about users, repositories and organizations.
@@ -12,6 +12,7 @@ Github explorer is project that uses the github API to display info about users,
 - [React.js](https://reactjs.org/)
 - [Sass](https://sass-lang.com/)
 - [React-icons](https://react-icons.github.io/react-icons//)
+- [Typescript](https://www.typescriptlang.org/)
 
 ## Getting Started
 
