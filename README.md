@@ -20,7 +20,7 @@ Github explorer is project that uses the github API to display info about users,
    ```sh
    git clone https://github.com/Rafaelb4rros/githubexplorer.git
    ```
-2. Install NPM packages
+2. Install packages
    ```sh
    yarn install
    ```
