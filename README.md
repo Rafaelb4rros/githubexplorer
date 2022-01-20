@@ -1,6 +1,6 @@
 <div align="left">
   <h1 align="center">Github explorer</h1>
-    <img src="./public/images/githubexplorer.gif" alt="Logo" width="900" height="600">
+    <img src="./public/images/githubexplorer.gif" alt="Logo" width="994" height="470">
 </div>
 <br>
 Github explorer is project that uses the github API to display info about users, repositories and organizations.
