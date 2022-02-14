@@ -1,7 +1,8 @@
-<div align="left">
-  <h1 align="center">Github explorer</h1>
-    <img src="./public/images/githubexplorer.gif" alt="Logo" width="994" height="470">
+<div align="center">
+    <img src="./.github/docs/images/githubexplorer.gif" alt="Logo" width="500">
+     <img src="./.github/docs/images/home.png" alt="home picture" width="500">
 </div>
+  <h1 align="center">Github explorer</h1>
 <br>
 Github explorer is project that uses the github API to display info about users, repositories and organizations.
 <br>
@@ -12,6 +13,22 @@ Github explorer is project that uses the github API to display info about users,
 - [React.js](https://reactjs.org/)
 - [Sass](https://sass-lang.com/)
 - [React-icons](https://react-icons.github.io/react-icons//)
+
+# :rocket: Features
+
+- [x] User can search for repositories users or organizations.
+- [x] Repository listing.
+- [x] User can see delete an repository from list.
+- [x] User can see repositories details.
+- [x] User cannot fetch if search input is empty.
+- [x] User can see repositories details.
+
+## ToDo
+
+- [ ] Send token in the requisition for unlimited requisitions.
+- [ ] Repository details page.
+- [ ] Save repository data in local storage.
+- [ ] Improve project structure.
 
 ## Getting Started
 
