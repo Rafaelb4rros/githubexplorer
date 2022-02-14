@@ -13,6 +13,7 @@ Github explorer is project that uses the github API to display info about users,
 - [React.js](https://reactjs.org/)
 - [Sass](https://sass-lang.com/)
 - [React-icons](https://react-icons.github.io/react-icons//)
+- [Typescript](https://www.typescriptlang.org/)
 
 # :rocket: Features
 
@@ -36,7 +37,7 @@ Github explorer is project that uses the github API to display info about users,
    ```sh
    git clone https://github.com/Rafaelb4rros/githubexplorer.git
    ```
-2. Install NPM packages
+2. Install packages
    ```sh
    yarn install
    ```
